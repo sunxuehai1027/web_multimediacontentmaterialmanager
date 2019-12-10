@@ -1,0 +1,44 @@
+
+#project_list {
+    list-style: none;
+     margin:0;
+     padding:0;
+}
+#project_list li p{
+
+color:#999696;
+}
+
+#project_list li h3{
+
+font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+}
+
+#project_list li {
+    margin:0;
+    padding:0
+}
+
+.col-md-1 column {
+    background-color: #EDF1F2;
+}
+
+.line-limit-length {
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    word-break:break-all;
+}
+
+.pagination {
+    margin: 20px auto;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    border-top: 1px solid #EAEAEA;
+}

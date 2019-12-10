@@ -1,0 +1,62 @@
+ul{
+    list-style: none;
+     margin:0;
+     padding:0;
+}
+
+.mycard{
+   float:left;
+   width:auto;
+   background:#F8F8F8;
+   border:2px solid;
+   border-color:#C5C3C3;
+   border-radius:5px;
+   height:40px;
+   line-height:35px;
+   -moz-border-radius:5px;
+   padding-left:35px;
+   padding-right:35px;
+   color:#B7AFAF;
+   margin-right:5px;
+   margin-bottom:5px;
+}
+
+
+#exampleInputPassword1{
+   height:300px;
+}
+
+#box1{
+   height:130px;
+}
+
+.uploadImgBtn {
+
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    float:left;
+    background: url("/image/add_pic.png") no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+#file{
+    width:100px;
+    height:100px;
+}
+ .uploadImg {
+    width:100px;
+    height:100px;
+    opacity: 0;
+    cursor: pointer;
+  }
+  //这是一个用做回显的盒子的样式
+  .pic{
+    height: 100px;
+    float:left;
+  }
+  .pic img {
+    width: 100px;
+    height: 100px;
+    float:left;
+  }

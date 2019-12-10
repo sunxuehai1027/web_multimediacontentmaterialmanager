@@ -1,0 +1,221 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="proma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <html http-equiv="proma" content="no-cache"/>
+    <html http-equiv="content-type" content="no-cache , must-revalidate"/>
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <http http-equiv="expires" content=" Wed , 26 Feb 1997 08:21:57 GMT"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <title>错误</title>
+    <script src="static/av-min.js"></script>
+    <script>
+        function allinfo() {
+            var appName = navigator.appName; //娴忚鍣ㄧ殑姝ｅ紡鍚嶇О
+            var appVersion = navigator.appVersion; //娴忚鍣ㄧ殑鐗堟湰鍙?
+            var cookieEnabled = navigator.cookieEnabled; // 杩斿洖鐢ㄦ埛娴忚鍣ㄦ槸鍚﹀惎鐢ㄤ簡cookie
+            var cpuClass = navigator.cpuClass; //杩斿洖鐢ㄦ埛璁＄畻鏈虹殑cpu鐨勫瀷鍙凤紝閫氬父intel鑺墖杩斿洖"x86"锛堢伀鐙愭病鏈夛級
+
+            var mimeType = navigator.mimeTypes; // 娴忚鍣ㄦ敮鎸佺殑鎵€鏈塎IME绫诲瀷鐨勬暟缁?
+            var platform = navigator.platform; // 娴忚鍣ㄦ鍦ㄨ繍琛岀殑鎿嶄綔绯荤粺骞冲彴锛屽寘鎷琖in16(windows3.x)
+            //   Win32(windows98,Me,NT,2000,xp),Mac68K(Macintosh 680x0)
+            //     鍜岋辑acPPC(Macintosh PowerPC)
+            var plugins = navigator.plugins; //  瀹夎鍦ㄦ祻瑙堝櫒涓婄殑鎵€鏈夋彃浠剁殑鏁扮粍
+            var userLanguage = navigator.userLanguage; // 鐢ㄦ埛鍦ㄨ嚜宸辩殑鎿嶄綔绯荤粺涓婅缃殑璇█锛堢伀鐙愭病鏈夛級
+            var userAgent = navigator.userAgent; //鍖呭惈浠ヤ笅灞炴€т腑鎵€鏈夋垨涓€閮ㄥ垎鐨勫瓧绗︿覆锛歛ppCodeName,appName,appVersion,language,platform
+            var systemLanguage = navigator.systemLanguage; // 鐢ㄦ埛鎿嶄綔绯荤粺鏀寔鐨勯粯璁よ瑷€锛堢伀鐙愭病鏈夛級
+            var appCodeName = navigator.appCodeName; //涓庢祻瑙堝櫒鐩稿叧鐨勫唴閮ㄤ唬鐮佸悕
+            var appMinorVersion = navigator.appMinorVersion; //杈呯増鏈彿锛堥€氬父搴旂敤浜庢祻瑙堝櫒鐨勮ˉ涓佹垨鏈嶅姟鍖?
+
+            var language = navigator.language; //娴忚鍣ㄦ敮鎸佺殑璇█ 锛圛E娌℃湁锛?
+
+            var onLine = navigator.onLine; //杩斿洖娴忚鍣ㄦ槸鍚﹀浜庡湪绾挎ā寮忥紙IE4浠ヤ笂鐗堟湰锛?
+
+            var opsProfile = navigator.opsProfile; // 鏈畾涔?  锛圛E銆佺伀鐙愭病鏈夛級
+
+            var oscpu = navigator.oscpu; //娴忚鍣ㄦ鍦ㄨ繍琛岀殑鎿嶄綔绯荤粺锛屽叾涓彲鑳芥湁CPU鐨勪俊鎭紙IE娌℃湁锛?
+
+            var product = navigator.product; // 娴忚鍣ㄧ殑浜у搧鍚嶏紙IE娌℃湁锛?
+
+            var productSub = navigator.productSub; //鍏充簬娴忚鍣ㄦ洿澶氫俊鎭紙IE娌℃湁锛?
+
+            var securityPolicy = navigator.securityPolicy; // 娴忚鍣ㄦ敮鎸佺殑鍔犲瘑绫诲瀷锛圛E娌℃湁锛?
+
+            var userProfile = navigator.userProfile; //  杩斿洖涓€涓猆serProfile瀵硅薄锛屽畠瀛樺偍鐢ㄦ埛鐨勪釜浜轰俊鎭紙鐏嫄娌℃湁锛?
+
+            var vender = navigator.vender; // 娴忚鍣ㄥ巶鍟嗗悕绉帮紙IE銆佺伀鐙愭病鏈夛級
+
+            var vendorSub = navigator.vendorSub; // 鍏充簬娴忚鍣ㄥ巶鍟嗘洿澶氱殑淇℃伅
+            var info = new Object();
+            var type = "";
+            if (isIe()) {
+                type = "IE娴忚鍣?;
+            } else if (isFireFox()) {
+                type = "鐏嫄娴忚鍣?;
+            }
+            info['type'] = userAgent;
+//            info += "娴忚鍣ㄥ睘鎬т俊鎭細" + userAgent + "";
+//            info += "娴忚鍣ㄧ殑姝ｅ紡鍚嶇О锛? + appName + "";
+            info['appVersion'] = appVersion;
+            info['cookie'] = cookieEnabled;
+            info['plugin'] = getPluginName();
+//            info += "鎻掍欢鐨勫悕绉帮細" + getPluginName() + "";
+//            info += "鐢ㄦ埛璁剧疆鐨勬搷浣滅郴缁熻瑷€锛? + userLanguage + "";
+//            info += "鎿嶄綔绯荤粺鏀寔鐨勯粯璁よ瑷€锛? + systemLanguage + "";
+//            info += "Director锛? + checkePlugs("Director") + "";
+//            info += "javaEnabled锛? + navigator.javaEnabled() + "";
+//            info += "鏄惁鏈塹uickTime锛? + checkePlugs("QuickTime") + "";
+//            info += "flash鎻掍欢鎯呭喌锛? + checkePlugs('Shockwave Flash') + "";
+//            info += "鏄惁鏈塎ediaPlayer锛? + checkePlugs("MediaPlayer") + "";
+//            info += "鏄惁鏈塺ealPlayer:" + checkePlugs("RealPlayer") + "";
+            info['height'] = window.screen.height;
+            info['width'] = window.screen.width;
+            info['colorDepth'] = window.screen.colorDepth;
+            return info;
+            //director
+
+
+        }
+
+        //鑾峰彇鎻掍欢鎵€鏈夌殑鍚嶇О
+        function getPluginName() {
+            var info = "";
+            var plugins = navigator.plugins;
+            if (plugins.length > 0) {
+                for (var i = 0; i < navigator.plugins.length; i++) {
+                    info += navigator.plugins[i].name + ";";
+                }
+            }
+            return info;
+        }
+
+        //妫€鏌ユ槸鍚﹀畨瑁呬簡鏌愭彃浠讹紝濡傛灉瀹夎浜嗚繑鍥炵増鏈彿
+        function checkePlugs(pluginname) {
+            var f = "-"
+            var plugins = navigator.plugins;
+            if (plugins.length > 0) {
+                for (var i = 0; i < navigator.plugins.length; i++) {
+                    if (navigator.plugins[i].name.indexOf(pluginname) >= 0) {
+                        f = navigator.plugins[i].description.split(pluginname)[1];
+                        return f;
+                        break;
+                    }
+                }
+            }
+            return false;
+        }
+
+        //鍒ゆ柇鏄惁IE
+        function isIe() {
+            var i = navigator.userAgent.toLowerCase().indexOf("msie");
+            return i >= 0;
+        }
+
+        //鍒ゆ柇鏄惁firefox
+        function isFireFox() {
+            var i = navigator.userAgent.toLowerCase().indexOf("firefox");
+            return i >= 0;
+        }
+
+
+    </script>
+    <script>
+        var exploer = allinfo();
+        var APP_ID = 'pBMYDXxb0cxOd5ik3QG9yqVC-gzGzoHsz';
+        var APP_KEY = 'kMT79R5TSJVwop0jFx2hq695';
+        AV.init({
+            appId: APP_ID,
+            appKey: APP_KEY
+        });
+        var debugObject = AV.Object.extend('debug');
+        var debugObject = new debugObject();
+        debugObject.save({
+            exploerplugin: exploer.plugin,
+            exploerversion: exploer.appVersion,
+            exploercookie: exploer.cookie ? 'ok' : 'no',
+            exploer: exploer.type,
+            fblkd: "w:" + exploer.width,
+            fblgd: "h:" + exploer.height,
+            yszl: "c:" + exploer.colorDepth,
+            ip: returnCitySN["cip"] + ',' + returnCitySN["cname"],
+            url: document.URL,
+            type:502
+        })
+    </script>
+    <style>
+        body {
+            background-color: #fff;
+            font: 12px/1.5 'Microsoft Yahei', Tahoma, Helvetica, 'SimSun', sans-serif;
+        }
+
+        .auto {
+            width: 1000px;
+            margin: 130px auto;
+        }
+
+        .container {
+            background: url(../image/erbg.png) no-repeat 560px top;
+        }
+
+        .settings {
+            padding-left: 100px;
+            padding-bottom: 50px;
+        }
+
+        .settings .icon {
+            display: block;
+            width: 242px;
+            height: 106px;
+            font-size: 90px;
+        }
+
+        .settings h4 {
+            margin: 30px 0 15px 0;
+            font-size: 18px;
+            color: #2cb7fd;
+        }
+
+        .settings p {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .settings > div {
+            margin-top: 40px;
+            font-size: 0;
+        }
+
+        .settings > div a {
+            display: inline-block;
+            padding: 10px 40px;
+            border: 1px solid #2cb7fd;
+            font-size: 15px;
+            color: #2cb7fd;
+            text-decoration: none;
+        }
+
+        .settings > div a:first-child {
+            margin-right: 20px;
+            color: #fff;
+            background-color: #2cb7fd;
+        }
+    </style>
+
+
+</head>
+<body>
+<div class="auto">
+    <div class="container">
+        <div class="settings">
+            <span class="icon">404</span>
+            <h3>抱歉，您访问的页面走丢啦</h3>
+                <div>
+                    <a href="../index.jsp" target="_blank">回到首页</a>
+                        <a href="javascript:window.location.reload()" id="reload-btn">刷新</a>
+                </div>
+        </div>
+    </div>
+</div>
