@@ -11,16 +11,22 @@
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
-    <include refid="Base_Column_List" />
+    *
     from tb_user
     where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    *
+    from tb_user
+    where tb_user.type!=1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_user
     where name = #{name,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="Entity.User" >
-    insert into tb_user (name, pwd, type
+    insert into tb_user (name, pwd, type,
       )
     values (#{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}
       )

@@ -6,6 +6,7 @@ import Entity.Multimedia;
 import java.util.ArrayList;
 
 public interface MultimediaMapper {
+
     int deleteByPrimaryKey(Integer number);
 
     int insert(Multimedia record);

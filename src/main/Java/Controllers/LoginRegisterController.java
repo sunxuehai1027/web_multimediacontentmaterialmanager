@@ -4,7 +4,10 @@ import Entity.User;
 import Service.impl.LoginRegisterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import page.PageVo;
+import response.JsonResult;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +17,12 @@ public class LoginRegisterController {
     @Autowired
     private LoginRegisterServiceImpl loginRegisterService;
 
+    /**
+     * @author sunxuehai
+     * @description 用户登录
+     * @date 2020/3/9
+     * @param user 用户
+     */
     @RequestMapping(value = "/api/Login", produces = "text/plain;charset=utf-8")
     public String login(User user, HttpSession session) {
         System.out.println("收到的用户名以及密码：" + user.toString());
@@ -25,6 +34,12 @@ public class LoginRegisterController {
         return result + "";
     }
 
+    /**
+     * @author sunxuehai
+     * @description 用户登出
+     * @date 2020/3/9
+     * @param user 用户
+     */
     @RequestMapping(value = "/api/LoginOut", produces = "text/plain;charset=utf-8")
     public String loginOut(User user, HttpSession session) {
         System.out.println("退出登录收到的用户名：" + user.getName());
@@ -32,6 +47,12 @@ public class LoginRegisterController {
         return 1 + "";
     }
 
+    /**
+     * @author sunxuehai
+     * @description 用户注册
+     * @date 2020/3/9
+     * @param user 用户
+     */
     @RequestMapping(value = "/api/Register", produces = "text/plain;charset=utf-8")
     public String register(User user) {
         user.setType(0);
@@ -39,4 +60,18 @@ public class LoginRegisterController {
         System.out.println("注册结果：" + result);
         return result + "";
     }
+    /**
+     * @author sunxuehai
+     * @description 查询用户集合
+     * @date 2020/3/9
+     * @param pageVo 用户
+     */
+    @RequestMapping(value = "/selectAll", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    public JsonResult selectAll(PageVo<User> pageVo) {
+        PageVo<User> userPageVo = loginRegisterService.selectAll(pageVo);
+        return JsonResult.createBySuccess("获取用户集合",userPageVo);
+    }
+
+
+
 }
