@@ -98,9 +98,6 @@
                             <li>
                                 <a href="index.jsp"> <img src="image/project.png"/>媒体</a>
                             </li>
-                            <li>
-                                <a href="project_classify.jsp"> <img src="image/divide.png"/> 分类</a>
-                            </li>
                         </ul>
                         <div id="search_project" class="search_bar">
                              <input id="my_input_index" placeholder="" name="cname" type="text">
@@ -117,11 +114,38 @@
 
         $(function () {
             var username = '<%= session.getAttribute("username")%>';
-            console.log("username:::" + username);
-            if (username != null && username != undefined) {
-                $('#login_register').innerHTML = username;
+            console.log("session取得用户名为：:" + username);
+            if (username != null && username != undefined && username!='null') {
+                $('#login_register').text('')
+                $('#login_register').append("<span>" + username + "</span>&nbsp;&nbsp;<span onclick=\"loginOut('"+username+"')\"> 退出</span>");
             }
         })
+
+        function loginOut(username) {
+            console.log('退出登录操作'+username.trim() )
+            $.ajax({
+                url: address_head + "/api/LoginOut",
+                asyn: true,
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    name: username.trim(),
+                },
+                cache: false,
+                success: function (data) {
+                    console.log('服务器返回值：' + data)
+                    if (data == '1') {
+                        console.log("退出登录成功！")
+                        window.location = "login.html";
+                    } else {
+                        console.log("退出登录失败！")
+                    }
+                },
+                error: function () {
+                    alert("请求失败");
+                },
+            });
+        }
     </script>
 </div>
 </body>

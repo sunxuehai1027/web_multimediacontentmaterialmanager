@@ -11,7 +11,11 @@ public interface IMultimediaService {
 
     ArrayList<Multimedia> selectByPrimaryKeyOffset(Args args);
 
+    ArrayList<Multimedia> selectByPrimaryByName(String name);
+
     int getAllMutilMediaCount();
 
     int insert(Multimedia record);
+
+    int delete(Integer number);
 }

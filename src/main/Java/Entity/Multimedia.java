@@ -21,6 +21,8 @@ public class Multimedia {
 
     private Date uploaddate;
 
+    private String filename;
+
     public Integer getNumber() {
         return number;
     }
@@ -91,5 +93,29 @@ public class Multimedia {
 
     public void setUploaddate(Date uploaddate) {
         this.uploaddate = uploaddate;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename == null ? null : filename.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Multimedia{" +
+                "number=" + number +
+                ", name='" + name + '\'' +
+                ", path='" + path + '\'' +
+                ", type=" + type +
+                ", download=" + download +
+                ", click=" + click +
+                ", description='" + description + '\'' +
+                ", uploaduserid='" + uploaduserid + '\'' +
+                ", uploaddate=" + uploaddate +
+                ", filename='" + filename + '\'' +
+                '}';
     }
 }

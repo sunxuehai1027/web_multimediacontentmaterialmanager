@@ -71,18 +71,20 @@ function searchProject() {
         return;
     }
     $.ajax({
-            url: address_head + "/api/SearchProject",
+            url: address_head + "/api/GetMultiMediaByName",
             async: true,
             type: "POST",
-            data: {"index": index},
+            data: {"name": name},
             // 成功后开启模态框
             success: function (data) {
                 $("#project_list").html("")
                 for (i in data) {// data.data指的是数组，数组里是对象，i为数组的索引
                     //console.log(data[i].title);
-                    $html = $("<li onclick='javascript:window.location.href=\"project_detail.jsp?id=" + data[i].id + "\"'><div class=\"col-md-12 column\"><h3>[" + data[i].number + "] " + data[i].title + "</h3><p class=\"line-limit-length\">" + data[i].introduction + "</p>" +
-                        "<div class=\"row clearfix\"><div class=\"col-md-8 column\"> " + getTypeHtml(data[i].typename) + "</div><div class=\"col-md-4 column\"><p>" +
-                        "<small>" + data[i].releasetime + "</small></p></div></div></div><hr></li>");
+                    $html = $("<li onclick='javascript:window.location.href=\"multimedia_detail.jsp?number=" + data[i].number + "\"'><div class=\"row clearfix\"><div class=\"col-md-12 column\">" +
+                        "<div class=\"col-md-8 column\"><h3>[" + data[i].number + "] " + data[i].name + "</h3> " +
+                        "</div><div class=\"col-md-4 column\"><span onclick=\"downloadFile(" + data[i].number + ")\"><img src=\"image/download.png\"/></a></span></div>" +
+                        "<div class=\"row clearfix\"><div class=\"col-md-8 column\"><p class=\"line-limit-length\">&nbsp&nbsp&nbsp&nbsp" + data[i].description + "</p></div><div class=\"col-md-4 column\"><p>" +
+                        "<small>" + data[i].uploaddate + "</small></p></div></div></div></div><hr></li>");
                     $("#project_list").append($html);
                 }
             },
@@ -115,8 +117,9 @@ function getAllProject(offset, length) {
                 $("#project_list").html("")
                 for (i in data) {// data.data指的是数组，数组里是对象，i为数组的索引
                     //console.log(data[i].title);
-                    $html = $("<li onclick='javascript:window.location.href=\"multimedia_detail.jsp?number=" + data[i].number + "\"'><div class=\"row clearfix\"><div class=\"col-md-12 column\"><div class=\"col-md-8 column\"><h3>[" + data[i].number + "] " + data[i].name + "</h3> " +
-                        "</div><div class=\"col-md-4 column\"><a href='" + data[i].path + "'><img src=\"image/download.png\"/></a></div>" +
+                    $html = $("<li onclick='javascript:window.location.href=\"multimedia_detail.jsp?number=" + data[i].number + "\"'><div class=\"row clearfix\"><div class=\"col-md-12 column\">" +
+                        "<div class=\"col-md-8 column\"><h3>[" + data[i].number + "] " + data[i].name + "</h3> " +
+                        "</div><div class=\"col-md-4 column\"><span onclick=\"downloadFile(" + data[i].number + ")\"><img src=\"image/download.png\"/></a></span></div>" +
                         "<div class=\"row clearfix\"><div class=\"col-md-8 column\"><p class=\"line-limit-length\">&nbsp&nbsp&nbsp&nbsp" + data[i].description + "</p></div><div class=\"col-md-4 column\"><p>" +
                         "<small>" + data[i].uploaddate + "</small></p></div></div></div></div><hr></li>");
                     $("#project_list").append($html);
@@ -132,6 +135,26 @@ function getAllProject(offset, length) {
     ;
 }
 
+
+function downloadFile(number) {
+    console.log('开始下载：' + number)
+    window.location.href = address_head + "/api/Download?number=" + number;
+    /*$.ajax({
+        url: address_head + "/api/Download",
+        asyn: true,
+        type: 'POST',
+        data: {
+            number: number,
+        },
+        cache: false,
+        success: function (data) {
+            console.log('服务器返回值：' + data)
+        },
+        error: function () {
+            alert("请求失败");
+        },
+    });*/
+}
 
 /**
  *将类型的字符串根据逗号拆分显示

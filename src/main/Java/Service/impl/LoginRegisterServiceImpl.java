@@ -25,7 +25,13 @@ public class LoginRegisterServiceImpl implements LoginRegisterService {
         if (user1 == null) {
             return -1;
         } else if (user.getName().equals(user1.getName())) {
-            return 1;
+            if (user1.getType() == 1) {
+                //管理员用户登录成功
+                return 11;
+            } else {
+                //普通登录成功
+                return 1;
+            }
         } else if (user.getName().equals(user1.getName())) {
             return 0;
         } else {

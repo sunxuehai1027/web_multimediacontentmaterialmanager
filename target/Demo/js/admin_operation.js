@@ -17,9 +17,9 @@ function getInfromation(myindex) {
                     $html = $("<ul id='project_list'></ul>");
                     $("#main_content").append($html);
                     for (i in data) {// data.data指的是数组，数组里是对象，i为数组的索引
-                        $html = $("<li><div class=\"row clearfix\"><div class=\"col-md-9 column\">【" + data[i].number + "】 " + data[i].name +
+                        $html = $("<li><div class=\"row clearfix\"><div class=\"col-md-9 column\"  onclick='javascript:window.location.href=\"multimedia_detail.jsp?number=" + data[i].number + "\"'>【" + data[i].number + "】 " + data[i].name +
                             "</div><div class=\"col-md-3 column\"><img onclick='modifyProject(" + data[i].number + ")' src='image/modify.png' title='修改'/>" +
-                            "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img onclick='deleteProject(" + data[i].id + ")' src='image/delete.png' title='删除'/></div></div><hr></li>");
+                            "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img onclick='deleteProject(" + data[i].number + ")' src='image/delete.png' title='删除'/></div></div><hr></li>");
                         $("#project_list").append($html);
                     }
                 },
@@ -66,18 +66,18 @@ function modifyProject(number) {
  * 删除项目
  * @param id
  */
-function deleteProject(id) {
-    if (id == null) {
+function deleteProject(number) {
+    if (number == null) {
         return;
     }
-    var gnl = confirm("是否确认删除该项目?");
+    var gnl = confirm("是否确认删除该素材?");
     if (gnl == true) {
 
     } else {
         return false;
     }
     $.ajax({
-            url: address_head + "/api/DeleteProjectById?id=" + id,
+            url: address_head + "/api/DeleteMultiMediaByNumber?number=" + number,
             async: true,
             type: "POST",
             // 成功后开启模态框
@@ -164,11 +164,27 @@ function uploadMyFile() {
                 alert("上传失败");
             }
         });
+
+        /*$.ajaxFileUpload({
+            fileElementId: 'fileName',    //需要上传的文件域的ID，即<input type="file">的ID。
+            url: address_head + "/api/FileUpload", //后台方法的路径
+            type: 'post',   //当要提交自定义参数时，这个参数要设置成post
+            secureuri: false,   //是否启用安全提交，默认为false。
+            async: true,   //是否是异步
+            success: function (data) {   //提交成功后自动执行的处理函数，参数data就是服务器返回的数据。
+                console.log("返回的文件名:" + data)
+                uploadMyFileConfig(data, name, description);
+            },
+            error: function (data, status, e) {  //提交失败自动执行的处理函数。
+                console.log("上传失败")
+                alert("上传失败");
+            }
+        });*/
     }
 }
 
 //上传文件配置信息，插入数据库
-function uploadMyFileConfig(path, name, description) {
+function uploadMyFileConfig(filename, name, description) {
 
     $.ajax({
             url: address_head + "/api/InsertMultiMedia",
@@ -177,16 +193,15 @@ function uploadMyFileConfig(path, name, description) {
             dataType: 'json',
             data: {
                 name: name,
+                filename: filename,
                 description: description,
-                path: path
             },
             cache: false,
-            dataType: 'text',
             success: function (data) {
                 console.log("result" + data);
-                if(data=="1"){
+                if (data == "1") {
                     getInfromation(1)
-                }else{
+                } else {
                     alert("上传失败");
                 }
             },
@@ -194,7 +209,6 @@ function uploadMyFileConfig(path, name, description) {
                 function () {
                     alert("请求失败");
                 },
-            dataType: "json"
         }
     );
 }

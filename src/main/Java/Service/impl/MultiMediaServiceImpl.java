@@ -28,6 +28,11 @@ public class MultiMediaServiceImpl implements IMultimediaService {
     }
 
     @Override
+    public ArrayList<Multimedia> selectByPrimaryByName(String name) {
+        return multimediaMapper.selectByPrimaryByName(name);
+    }
+
+    @Override
     public int getAllMutilMediaCount() {
         return multimediaMapper.getAllMutilMediaCount();
     }
@@ -35,5 +40,10 @@ public class MultiMediaServiceImpl implements IMultimediaService {
     @Override
     public int insert(Multimedia record) {
         return multimediaMapper.insert(record);
+    }
+
+    @Override
+    public int delete(Integer number) {
+        return multimediaMapper.deleteByPrimaryKey(number);
     }
 }

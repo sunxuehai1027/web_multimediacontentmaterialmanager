@@ -12,6 +12,6 @@
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="utf-8"></property>
-        <property name="maxUploadSize" value="5242440"></property>    <!--设置最大支持的上传文件大小 B-->
+        <property name="maxUploadSize" value="9115242440"></property>    <!--设置最大支持的上传文件大小 B-->
     </bean>
 </beans>

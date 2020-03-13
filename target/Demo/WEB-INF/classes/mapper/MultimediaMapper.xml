@@ -11,16 +11,18 @@
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="uploaduserid" property="uploaduserid" jdbcType="VARCHAR" />
     <result column="uploaddate" property="uploaddate" jdbcType="TIMESTAMP" />
+    <result column="filename" property="filename" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    number, name, path, type, download, click, description, uploaduserid, uploaddate
+    number, name, path, type, download, click, description, uploaduserid, uploaddate, 
+    filename
   </sql>
   <select id="getAllMutilMediaCount" resultType="java.lang.Integer">
     select
      count(*)
     from tb_multimedia
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from tb_multimedia
@@ -33,6 +35,12 @@
     from tb_multimedia
     limit #{arg1}, #{arg2}
   </select>
+  <select id="selectByPrimaryByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_multimedia
+    where name LIKE CONCAT('%',#{name},'%')
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_multimedia
     where number = #{number,jdbcType=INTEGER}
@@ -40,12 +48,12 @@
   <insert id="insert" parameterType="Entity.Multimedia" >
     insert into tb_multimedia (number, name, path, 
       type, download, click, 
-      description, uploaduserid, uploaddate
-      )
+      description, uploaduserid, uploaddate, 
+      filename)
     values (#{number,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
       #{type,jdbcType=INTEGER}, #{download,jdbcType=INTEGER}, #{click,jdbcType=INTEGER}, 
-      #{description,jdbcType=VARCHAR}, #{uploaduserid,jdbcType=VARCHAR}, #{uploaddate,jdbcType=TIMESTAMP}
-      )
+      #{description,jdbcType=VARCHAR}, #{uploaduserid,jdbcType=VARCHAR}, #{uploaddate,jdbcType=TIMESTAMP}, 
+      #{filename,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="Entity.Multimedia" >
     insert into tb_multimedia
@@ -77,6 +85,9 @@
       <if test="uploaddate != null" >
         uploaddate,
       </if>
+      <if test="filename != null" >
+        filename,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="number != null" >
@@ -105,6 +116,9 @@
       </if>
       <if test="uploaddate != null" >
         #{uploaddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -135,6 +149,9 @@
       <if test="uploaddate != null" >
         uploaddate = #{uploaddate,jdbcType=TIMESTAMP},
       </if>
+      <if test="filename != null" >
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
     </set>
     where number = #{number,jdbcType=INTEGER}
   </update>
@@ -147,7 +164,8 @@
       click = #{click,jdbcType=INTEGER},
       description = #{description,jdbcType=VARCHAR},
       uploaduserid = #{uploaduserid,jdbcType=VARCHAR},
-      uploaddate = #{uploaddate,jdbcType=TIMESTAMP}
+      uploaddate = #{uploaddate,jdbcType=TIMESTAMP},
+      filename = #{filename,jdbcType=VARCHAR}
     where number = #{number,jdbcType=INTEGER}
   </update>
 </mapper>

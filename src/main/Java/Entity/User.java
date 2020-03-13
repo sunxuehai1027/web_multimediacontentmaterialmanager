@@ -5,6 +5,8 @@ public class User {
 
     private String pwd;
 
+    private Integer type;
+
     public String getName() {
         return name;
     }
@@ -19,5 +21,22 @@ public class User {
 
     public void setPwd(String pwd) {
         this.pwd = pwd == null ? null : pwd.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", type=" + type +
+                '}';
     }
 }

@@ -21,4 +21,6 @@ public interface MultimediaMapper {
     ArrayList<Multimedia> selectByPrimaryKeyOffset(Args args);
 
     int getAllMutilMediaCount();
+
+    ArrayList<Multimedia> selectByPrimaryByName(String name);
 }
