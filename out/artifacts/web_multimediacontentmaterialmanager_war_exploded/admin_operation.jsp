@@ -28,7 +28,10 @@
                     <div id="btn_add_project" onclick="getInfromation(2)" class="panel-footer">
                         <strong>新增素材</strong>
                     </div>
-                    <div id="btn_contact_us" onclick="getInfromation(3)" class="panel-footer">
+                    <div id="btn_user_list" onclick="getInfromation(3)" class="panel-footer">
+                        <strong> 用户列表</strong>
+                    </div>
+                    <div id="btn_contact_us" onclick="getInfromation(4)" class="panel-footer">
                         <strong> 联系我们</strong>
                     </div>
                 </div>

@@ -50,7 +50,7 @@ ul{
     opacity: 0;
     cursor: pointer;
   }
-  //这是一个用做回显的盒子的样式
+
   .pic{
     height: 100px;
     float:left;

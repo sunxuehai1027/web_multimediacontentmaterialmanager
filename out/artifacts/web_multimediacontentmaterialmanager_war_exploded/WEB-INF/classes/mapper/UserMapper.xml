@@ -26,7 +26,7 @@
     where name = #{name,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="Entity.User" >
-    insert into tb_user (name, pwd, type
+    insert into tb_user (name, pwd, type,
       )
     values (#{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}
       )

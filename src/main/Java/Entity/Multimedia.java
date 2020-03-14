@@ -1,5 +1,7 @@
 package Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Multimedia {
@@ -11,7 +13,7 @@ public class Multimedia {
 
     private Integer type;
 
-    private Integer download;
+    private String download;
 
     private Integer click;
 
@@ -19,9 +21,20 @@ public class Multimedia {
 
     private String uploaduserid;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date uploaddate;
 
     private String filename;
+
+    private String size;
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 
     public Integer getNumber() {
         return number;
@@ -55,11 +68,11 @@ public class Multimedia {
         this.type = type;
     }
 
-    public Integer getDownload() {
+    public String getDownload() {
         return download;
     }
 
-    public void setDownload(Integer download) {
+    public void setDownload(String download) {
         this.download = download;
     }
 

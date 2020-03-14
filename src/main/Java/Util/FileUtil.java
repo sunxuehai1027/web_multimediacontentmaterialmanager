@@ -2,6 +2,7 @@ package Util;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class FileUtil {
 
@@ -25,5 +26,11 @@ public class FileUtil {
             }
         }
         return hashMap;
+    }
+    public static String replaceUUID(Object uuid) {
+        return uuid.toString().replaceAll("\\-", "");
+    }
+    public static String getUUID() {
+        return replaceUUID(UUID.randomUUID());
     }
 }

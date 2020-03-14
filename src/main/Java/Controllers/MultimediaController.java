@@ -7,13 +7,16 @@ import Dto.Args;
 import Entity.Multimedia;
 import Service.IMultimediaService;
 import Util.DateUtil;
+import Util.FileUtil;
 import Util.TypeUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import response.JsonResult;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
@@ -78,10 +81,12 @@ public class MultimediaController {
     }
 
     @RequestMapping(value = "/api/InsertMultiMedia", produces = "text/plain;charset=utf-8")
-    public String insertMultiMedia(Multimedia multimedia) {
-
-        //multimedia.setUploaduserid(session.getAttribute("username").toString());
+    public String insertMultiMedia(Multimedia multimedia,HttpSession session) {
+        //String substring = multimedia.getFilename().substring(multimedia.getFilename().lastIndexOf("\\") + 1);
+        //multimedia.setFilename(substring);
+        multimedia.setUploaduserid(session.getAttribute("username").toString());
         System.out.println("插入的数据：" + multimedia.toString());
+        //日期
         multimedia.setUploaddate(DateUtil.getCurrentDate());
         if (multimedia.getFilename() == null) {
             return ErrorCode.ERROR_EMPTY_FILE_UPLOAD.getCode() + "";
@@ -89,9 +94,13 @@ public class MultimediaController {
         // 获得文件后缀名称
         String suffixName = multimedia.getFilename().substring(multimedia.getFilename().lastIndexOf(".") + 1).toUpperCase();
         int type = TypeUtil.getFileTypeBySuffix(suffixName);
+        //类型
         multimedia.setType(type);
         String path = Constants.FILE_STORAGE_PATH_HEAD + "/" + TypeAndFolder.getMsgByCode(type);
+        //路径
+        multimedia.setFilename(multimedia.getFilename());
         multimedia.setPath(path);
+        multimedia.setDownload(FileUtil.getUUID());
         int result = iMultimediaService.insert(multimedia);
         System.out.println("插入数据的返回值:" + result);
         return result + "";
@@ -108,9 +117,12 @@ public class MultimediaController {
             return ErrorCode.ERROR_EMPTY_NOT_ADMIN.getCode() + "";
         }*/
         System.out.println("开始接收文件...");
+        Multimedia multimedia=new Multimedia();
         String path = Constants.SERVER_NATIVE_HEAD + Constants.FILE_STORAGE_PATH_HEAD;//文件的上传路径
         System.out.println("path" + path);
+        multimedia.setPath(path);
         String fileName = file.getOriginalFilename();
+        multimedia.setFilename(fileName);
         //获取文件名
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         // 获得文件后缀名称
@@ -176,6 +188,12 @@ public class MultimediaController {
         // 关闭输出流
         out.close();
         System.out.println("下载完成");
+    }
+    @RequestMapping(value = "/fileManagement", method = RequestMethod.POST, produces =
+            "application/json;charset=utf-8", consumes = "multipart/form-data;charset=utf-8")
+    public JsonResult uploadFile(MultipartFile file, HttpServletRequest request,HttpSession session) throws Exception {
+
+        return iMultimediaService.uploadFile(file, request,session);
     }
 
 

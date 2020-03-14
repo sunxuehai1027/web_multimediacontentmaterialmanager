@@ -5,6 +5,7 @@ function getInfromation(myindex) {
     if (myindex == 1) {
         $("#btn_project_list").attr("class", "panel-body");
         $("#btn_add_project").attr("class", "panel-footer");
+        $("#btn_user_list").attr("class", "panel-footer");
         $("#btn_contact_us").attr("class", "panel-footer");
         $("#main_content").html("");
         $.ajax({
@@ -34,6 +35,7 @@ function getInfromation(myindex) {
     } else if (myindex == 2) {
         $("#btn_project_list").attr("class", "panel-footer");
         $("#btn_add_project").attr("class", "panel-body");
+        $("#btn_user_list").attr("class", "panel-footer");
         $("#btn_contact_us").attr("class", "panel-footer");
         /*新增项目*/
         $("#main_content").html("");
@@ -48,7 +50,40 @@ function getInfromation(myindex) {
     } else if (myindex == 3) {
         $("#btn_project_list").attr("class", "panel-footer");
         $("#btn_add_project").attr("class", "panel-footer");
+        $("#btn_user_list").attr("class", "panel-footer");
         $("#btn_contact_us").attr("class", "panel-body");
+        $("#main_content").html("");
+        $.ajax({
+                url: address_head + "/api/selectUser",
+                async: true,
+                type: "POST",
+                // 成功后开启模态框
+                success: function (data) {
+                    console.log(data);
+                    $html = $("<ul id='user_list'></ul>");
+                    $("#main_content").append($html);
+                    for (i in data) {// data.data指的是数组，数组里是对象，i为数组的索引
+                        $html = $("<li><div class=\"row clearfix\"><div class=\"col-md-9 column\"  onclick='javascript:window.location.href=\"multimedia_detail.jsp?number=" + data[i].number + "\"'>【" + data[i].number + "】 " + data[i].name +
+                            "</div><div class=\"col-md-3 column\"><img onclick='modifyUser(" + data[i].number + ")' src='image/modify.png' title='修改用户'/>" +
+                            "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img onclick='deleteUser(" + data[i].number + ")' src='image/delete.png' title='删除用户'/></div></div><hr></li>");
+                        $("#user_list").append($html);
+                    }
+                },
+                error:
+                    function () {
+                        alert("请求失败");
+                    },
+                dataType: "json"
+            }
+        )
+        ;
+
+    }
+     else if(myindex == 4) {
+        $("#btn_project_list").attr("class", "panel-body");
+        $("#btn_add_project").attr("class", "panel-footer");
+        $("#btn_user_list").attr("class", "panel-footer");
+        $("#btn_contact_us").attr("class", "panel-footer");
         $("#main_content").html("");
 
     }
@@ -59,6 +94,72 @@ function getInfromation(myindex) {
  * @param id
  */
 function modifyProject(number) {
+    if (number == null) {
+        return;
+    }
+    var gnl = confirm("是否确认修改该素材?");
+    if (gnl == true) {
+
+    } else {
+        return false;
+    }
+    $.ajax({
+            url: address_head + "/api/updateMultiMediaByNumber?number=" + number,
+            async: true,
+            type: "POST",
+            // 成功后开启模态框
+            success: function (data) {
+                console.log("updateResult:" + data);
+                if ("1" == data) {
+                    getInfromation(1)
+                } else {
+                    alert("修改失败！")
+                }
+            },
+            error:
+                function () {
+                    alert("请求失败");
+                },
+            dataType: "json"
+        }
+    )
+    ;
+
+}/**
+ * 修改用户
+ * @param id
+ */
+function modifyUser(number) {
+    if (number == null) {
+        return;
+    }
+    var gnl = confirm("是否确认修改该用户信息?");
+    if (gnl == true) {
+
+    } else {
+        return false;
+    }
+    $.ajax({
+            url: address_head + "/api/updateUserByNumber?number=" + number,
+            async: true,
+            type: "POST",
+            // 成功后开启模态框
+            success: function (data) {
+                console.log("updateResult:" + data);
+                if ("1" == data) {
+                    getInfromation(1)
+                } else {
+                    alert("修改失败！")
+                }
+            },
+            error:
+                function () {
+                    alert("请求失败");
+                },
+            dataType: "json"
+        }
+    )
+    ;
 
 }
 
@@ -78,6 +179,42 @@ function deleteProject(number) {
     }
     $.ajax({
             url: address_head + "/api/DeleteMultiMediaByNumber?number=" + number,
+            async: true,
+            type: "POST",
+            // 成功后开启模态框
+            success: function (data) {
+                console.log("deleteResult:" + data);
+                if ("1" == data) {
+                    getInfromation(1)
+                } else {
+                    alert("删除失败！")
+                }
+            },
+            error:
+                function () {
+                    alert("请求失败");
+                },
+            dataType: "json"
+        }
+    )
+    ;
+}
+/**
+ * 删除user
+ * @param id
+ */
+function deleteUser(number) {
+    if (number == null) {
+        return;
+    }
+    var gnl = confirm("是否确认删除该用户?");
+    if (gnl == true) {
+
+    } else {
+        return false;
+    }
+    $.ajax({
+            url: address_head + "/api/DeleteUserByNumber?number=" + number,
             async: true,
             type: "POST",
             // 成功后开启模态框

@@ -51,7 +51,7 @@
       description, uploaduserid, uploaddate, 
       filename)
     values (#{number,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{download,jdbcType=INTEGER}, #{click,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{download,jdbcType=VARCHAR}, #{click,jdbcType=INTEGER},
       #{description,jdbcType=VARCHAR}, #{uploaduserid,jdbcType=VARCHAR}, #{uploaddate,jdbcType=TIMESTAMP}, 
       #{filename,jdbcType=VARCHAR})
   </insert>

@@ -66,7 +66,7 @@ public class LoginRegisterController {
      * @date 2020/3/9
      * @param pageVo 用户
      */
-    @RequestMapping(value = "/selectAll", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/api/selectUser", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     public JsonResult selectAll(PageVo<User> pageVo) {
         PageVo<User> userPageVo = loginRegisterService.selectAll(pageVo);
         return JsonResult.createBySuccess("获取用户集合",userPageVo);

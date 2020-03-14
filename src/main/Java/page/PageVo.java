@@ -1,11 +1,9 @@
 package page;
 
-import cn.seczone.security.Utils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.pagehelper.Page;
-import io.swagger.annotations.ApiModelProperty;
 
-import javax.validation.constraints.*;
 import java.util.List;
 
 /**
@@ -13,44 +11,36 @@ import java.util.List;
  */
 public class PageVo<T> {
 
-	@NotNull
-	@Min(1)
-	@ApiModelProperty(required = true, name = "pageIndex", value = "the target page which page numbers")
+
 	private int pageIndex;
 
-	@NotNull
-	@Min(1)
-	@Max(100)
-	@ApiModelProperty(required = true, name = "pageSize", value = "min 1")
+
 	private int pageSize;
 
-	@ApiModelProperty(hidden = true)
+
 	private int total;
 
-	@ApiModelProperty(hidden = true)
+
 	private int start;
 
-	@ApiModelProperty(value = "sort order")
+
 	private String order;
 
-	@ApiModelProperty(value = "sort conditions")
-	@Pattern(regexp = "^asc$|^desc$")
+
 	private String sort;
 
-	@ApiModelProperty(value = "过滤字段")
-	@Size(max = 64)
 	private String filter;
 
-	@ApiModelProperty
+
 	private List<T> data;
 
-	@ApiModelProperty(hidden = true)
+
 	@JsonIgnore
 	private T queryCondition ;
 
-    @ApiModelProperty(value = "total page numbers")
+
 	private int pages ;
-    @ApiModelProperty(value = "current page list numbers")
+
 	private int size ;
 
     public int getPages() {
@@ -170,10 +160,4 @@ public class PageVo<T> {
 		return (pageIndex - 1) * pageSize;
 	}
 
-	public void setFuzzySearchFilter(){
-		String fuzzySearchFilter = this.filter;
-		if (Utils.isNotEmpty(fuzzySearchFilter)){
-			this.filter = "%".concat(fuzzySearchFilter).concat("%");
-		}
-	}
 }

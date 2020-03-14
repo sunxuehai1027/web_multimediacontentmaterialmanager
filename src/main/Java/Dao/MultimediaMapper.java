@@ -11,7 +11,7 @@ public interface MultimediaMapper {
 
     int insert(Multimedia record);
 
-    int insertSelective(Multimedia record);
+    Multimedia insertSelective(Multimedia record);
 
     Multimedia selectByPrimaryKey(Integer number);
 
